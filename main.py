@@ -7,4 +7,3 @@ else:
     print(f"{word} is not a palindrome!")
 
 guess_the_number()
-
