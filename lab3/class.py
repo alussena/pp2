@@ -109,4 +109,3 @@ prime_numbers = list(filter(lambda x: is_prime(x), numbers))
 print("Prime numbers:", prime_numbers)
 
 
-
