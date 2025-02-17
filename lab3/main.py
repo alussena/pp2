@@ -1,9 +1,8 @@
-from functions import is_palindrome, guess_the_number
+from www import is_palindrome
 
-word = input("Enter a word or phrase to check if it's a palindrome: ")
+word = input("Enter: ")
 if is_palindrome(word):
     print(f"{word} is a palindrome!")
 else:
     print(f"{word} is not a palindrome!")
 
-guess_the_number()
