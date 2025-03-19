@@ -11,7 +11,7 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
 CELL = 30
 
-def draw_grid():
+def draw_grid(): #сетка
     for i in range(HEIGHT // CELL):
         for j in range(WIDTH // CELL):
             pygame.draw.rect(screen, colorGRAY, (i * CELL, j * CELL, CELL, CELL), 1)
@@ -45,24 +45,23 @@ class Snake:
         self.body[0].x += self.dx
         self.body[0].y += self.dy
 
-        # checks the right border
         if self.body[0].x > WIDTH // CELL - 1:
             self.body[0].x = 0
-        # checks the left border
+      
         if self.body[0].x < 0:
             self.body[0].x = WIDTH // CELL - 1
-        # checks the bottom border
+      
         if self.body[0].y > HEIGHT // CELL - 1:
             self.body[0].y = 0
-        # checks the top border
+        
         if self.body[0].y < 0:
             self.body[0].y = HEIGHT // CELL - 1
 
 
     def draw(self):
-        head = self.body[0]
+        head = self.body[0] #head
         pygame.draw.rect(screen, colorRED, (head.x * CELL, head.y * CELL, CELL, CELL))
-        for segment in self.body[1:]:
+        for segment in self.body[1:]: #body
             pygame.draw.rect(screen, colorYELLOW, (segment.x * CELL, segment.y * CELL, CELL, CELL))
 
     def check_collision(self, food):
@@ -74,7 +73,7 @@ class Snake:
 
 class Food:
     def __init__(self):
-        self.pos = Point(9, 9)
+        self.pos = Point(9, 9) #starting point
 
     def draw(self):
         pygame.draw.rect(screen, colorGREEN, (self.pos.x * CELL, self.pos.y * CELL, CELL, CELL))
@@ -94,13 +93,11 @@ snake = Snake()
 score = 0
 level = 1
 
-# Отображение счета и уровня
 def draw_score():
     font = pygame.font.SysFont(None, 36)
     score_text = font.render(f"Score: {score}  Level: {level}", True, colorWHITE)
     screen.blit(score_text, (10, 10))
 
-# Модифицированный метод генерации еды, чтобы не появляться на змее
 def generate_food(snake):
     while True:
         x = random.randint(0, WIDTH // CELL - 1)
@@ -108,15 +105,14 @@ def generate_food(snake):
         if not any(segment.x == x and segment.y == y for segment in snake.body):
             return Point(x, y)
 
-# Обновленный check_collision для обработки очков, уровня и скорости
-def check_collision(snake, food):
+def check_collision(snake, food): #считываем моменты когда змейка кушает (ув скорость + счетчик)
     global score, level, FPS
     if snake.body[0].x == food.pos.x and snake.body[0].y == food.pos.y:
         score += 1
         snake.body.append(Point(snake.body[-1].x, snake.body[-1].y))
         food.pos = generate_food(snake)
 
-        if score % 3 == 0:
+        if score % 3 == 0: #ув уровня и скорости
             level += 1
             FPS += 2
 
