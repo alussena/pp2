@@ -47,6 +47,7 @@ class Snake:
 
         if self.body[0].x > WIDTH // CELL - 1:
             self.body[0].x = 0
+<<<<<<< HEAD
       
         if self.body[0].x < 0:
             self.body[0].x = WIDTH // CELL - 1
@@ -54,6 +55,15 @@ class Snake:
         if self.body[0].y > HEIGHT // CELL - 1:
             self.body[0].y = 0
         
+=======
+        
+        if self.body[0].x < 0:
+            self.body[0].x = WIDTH // CELL - 1
+       
+        if self.body[0].y > HEIGHT // CELL - 1:
+            self.body[0].y = 0
+      
+>>>>>>> 8a7e6f6f4eadc6efe5b1ef6ce1882fb7fc653cdf
         if self.body[0].y < 0:
             self.body[0].y = HEIGHT // CELL - 1
 
@@ -98,6 +108,10 @@ def draw_score():
     score_text = font.render(f"Score: {score}  Level: {level}", True, colorWHITE)
     screen.blit(score_text, (10, 10))
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8a7e6f6f4eadc6efe5b1ef6ce1882fb7fc653cdf
 def generate_food(snake):
     while True:
         x = random.randint(0, WIDTH // CELL - 1)
@@ -105,7 +119,11 @@ def generate_food(snake):
         if not any(segment.x == x and segment.y == y for segment in snake.body):
             return Point(x, y)
 
+<<<<<<< HEAD
 def check_collision(snake, food): #считываем моменты когда змейка кушает (ув скорость + счетчик)
+=======
+def check_collision(snake, food):
+>>>>>>> 8a7e6f6f4eadc6efe5b1ef6ce1882fb7fc653cdf
     global score, level, FPS
     if snake.body[0].x == food.pos.x and snake.body[0].y == food.pos.y:
         score += 1
