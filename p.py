@@ -52,16 +52,15 @@ class Snake:
         self.body[0].x += self.dx
         self.body[0].y += self.dy
 
-        # checks the right border
         if self.body[0].x > WIDTH // CELL - 1:
             self.body[0].x = 0
-        # checks the left border
+
         if self.body[0].x < 0:
             self.body[0].x = WIDTH // CELL - 1
-        # checks the bottom border
+            
         if self.body[0].y > HEIGHT // CELL - 1:
             self.body[0].y = 0
-        # checks the top border
+
         if self.body[0].y < 0:
             self.body[0].y = HEIGHT // CELL - 1
 
@@ -101,13 +100,11 @@ snake = Snake()
 score = 0
 level = 1
 
-# Отображение счета и уровня
 def draw_score():
     font = pygame.font.SysFont(None, 36)
     score_text = font.render(f"Score: {score}  Level: {level}", True, colorWHITE)
     screen.blit(score_text, (10, 10))
 
-# Модифицированный метод генерации еды, чтобы не появляться на змее
 def generate_food(snake):
     while True:
         x = random.randint(0, WIDTH // CELL - 1)
@@ -115,7 +112,6 @@ def generate_food(snake):
         if not any(segment.x == x and segment.y == y for segment in snake.body):
             return Point(x, y)
 
-# Обновленный check_collision для обработки очков, уровня и скорости
 def check_collision(snake, food):
     global score, level, FPS
     if snake.body[0].x == food.pos.x and snake.body[0].y == food.pos.y:
