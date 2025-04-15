@@ -29,6 +29,7 @@ def insert_from_csv(phonebook):
         reader = csv.reader(csvfile)
         # next(reader) - если в файле бывают заголовки
         with conn.cursor() as cur:
+            cur.execute("DELETE FROM phonebook")
             for row in reader:
                 name = row[0]
                 phone = row[1]
