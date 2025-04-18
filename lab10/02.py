@@ -4,7 +4,7 @@ import time
 import psycopg2
 
 conn = psycopg2.connect(
-    dbname="snake_game", 
+    dbname="Snake", 
     user="postgres", 
     password="12345678", 
     host="localhost", 
